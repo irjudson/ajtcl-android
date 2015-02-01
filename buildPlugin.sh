@@ -9,14 +9,14 @@ if [ "$1x" == "x" ]; then
 	echo "AJTCL Android directory not set. Exiting..."
 	exit 1
 else
-	PLUGINDIR="$1"
+	AJTCL_ROOT="$1"
 fi
 
 if [ "$2x" == "x" ]; then
 	echo "AJTCL Root not set. Exiting..."
 	exit 1
 else
-	AJTCL_ROOT="$2"
+	PLUGINDIR="$2"
 fi
 
 
@@ -32,5 +32,5 @@ cp $AJTCL_ROOT/swig/java/* $PLUGINDIR/src/alljoyn/
 
 # Build the native assets
 pushd $PLUGINDIR
-AJTCL_ROOT=$AJTCL_ROOT $NDK_ROOT/ndk-build
+AJTCL_ROOT=$AJTCL_ROOT NDK_PROJECT_PATH=$PLUGINDIR ndk-build
 popd
