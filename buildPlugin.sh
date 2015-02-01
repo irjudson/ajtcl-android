@@ -24,13 +24,13 @@ if [ "$AJTCL_ROOT" == "" ]; then
 	exit 1
 fi
 
+# Copy the bits and make the jar
 cp $AJTCL_ROOT/swig/alljoyn_java_wrap.c $PLUGINDIR/jni/alljoyn.c
-
-rm $PLUGINDIR/src/alljoyn/*
 cp $AJTCL_ROOT/swig/java/* $PLUGINDIR/src/alljoyn/
 javac $PLUGINDIR/src/alljoyn/*.java
 jar -cvf $PLUGINDIR/alljoyn.jar -C $PLUGINDIR/src alljoyn
 
+# Build the native assets
 pushd $PLUGINDIR
 ndk-build
 popd
