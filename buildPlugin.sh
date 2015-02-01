@@ -20,11 +20,9 @@ else
 fi
 
 
-if [ "$3x" == "x" ]; then
+if [ "$NDK_ROOTx" == "x" ]; then
 	echo "NDK_ROOT not set. Exiting..."
 	exit 1
-else
-	NDK_ROOT="$3"
 fi
 
 # Copy the generated files
