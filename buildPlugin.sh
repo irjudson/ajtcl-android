@@ -6,14 +6,14 @@
 #
 
 if [ "$1x" == "x" ]; then
-	echo "Root directory not set. Exiting..."
+	echo "AJTCL Android directory not set. Exiting..."
 	exit 1
 else
 	PLUGINDIR="$1"
 fi
 
 if [ "$2x" == "x" ]; then
-	echo "AllJoyn Thin Client Library Root not set. Exiting..."
+	echo "AJTCL Root not set. Exiting..."
 	exit 1
 else
 	AJTCL_ROOT="$2"
@@ -31,4 +31,6 @@ cp $AJTCL_ROOT/swig/java/* $PLUGINDIR/src/alljoyn/
 javac $PLUGINDIR/src/alljoyn/*.java
 jar -cvf $PLUGINDIR/alljoyn.jar -C $PLUGINDIR/src alljoyn
 
+pushd $PLUGINDIR
 ndk-build
+popd
