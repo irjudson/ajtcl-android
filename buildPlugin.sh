@@ -5,8 +5,18 @@
 # (c) 2015 Microsoft
 #
 
-if [ "$1x" != "x" ]; then
-	AJTCL_ROOT="$1"
+if [ "$1x" == "x" ]; then
+	echo "Root directory not set. Exiting..."
+	exit 1
+else
+	PLUGINDIR="$1"
+fi
+
+if [ "$2x" == "x" ]; then
+	echo "AllJoyn Thin Client Library Root not set. Exiting..."
+	exit 1
+else
+	AJTCL_ROOT="$2"
 fi
 
 if [ "$AJTCL_ROOT" == "" ]; then
@@ -14,11 +24,11 @@ if [ "$AJTCL_ROOT" == "" ]; then
 	exit 1
 fi
 
-cp $AJTCL_ROOT/swig/alljoyn_java_wrap.c jni/alljoyn.c
+cp $AJTCL_ROOT/swig/alljoyn_java_wrap.c $PLUGINDIR/jni/alljoyn.c
 
-rm src/alljoyn/*
-cp $AJTCL_ROOT/swig/java/* src/alljoyn/
-javac src/alljoyn/*.java
-jar -cvf alljoyn.jar -C src alljoyn
+rm $PLUGINDIR/src/alljoyn/*
+cp $AJTCL_ROOT/swig/java/* $PLUGINDIR/src/alljoyn/
+javac $PLUGINDIR/src/alljoyn/*.java
+jar -cvf $PLUGINDIR/alljoyn.jar -C $PLUGINDIR/src alljoyn
 
 ndk-build
