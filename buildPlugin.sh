@@ -27,6 +27,7 @@ fi
 
 # Copy the generated files
 cp $AJTCL_ROOT/swig/alljoyn_java_wrap.c $PLUGINDIR/jni/alljoyn.c
+mkdir -p $PLUGINDIR/src/alljoyn
 cp $AJTCL_ROOT/swig/java/* $PLUGINDIR/src/alljoyn/
 
 # Build the native assets
