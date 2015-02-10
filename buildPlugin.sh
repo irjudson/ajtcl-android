@@ -32,5 +32,5 @@ cp $AJTCL_ROOT/swig/java/* $PLUGINDIR/src/alljoyn/
 
 # Build the native assets
 pushd $PLUGINDIR
-AJTCL_ROOT=$AJTCL_ROOT NDK_PROJECT_PATH=$PLUGINDIR ndk-build
+AJTCL_ROOT=$AJTCL_ROOT NDK_PROJECT_PATH=$PLUGINDIR $NDK_ROOT/ndk-build
 popd
